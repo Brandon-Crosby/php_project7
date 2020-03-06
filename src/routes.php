@@ -31,7 +31,6 @@ $app->post('', function (Request $request, Response $response, array $args) {
       return $response->withJson($result, 201, JSON_PRETTY_PRINT);
     });
 $app->put('/{task_id}', function (Request $request, Response $response, array $args) {
-      $result = $this->task->updateTask($args['task_id']);
       $data = $request->getParsedBody();
       $data['task_id'] = $args['task_id'];
       $result = $this->task->updateTask($data);
