@@ -27,8 +27,8 @@ $app->get('/{task_id}', function (Request $request, Response $response, array $a
       return $response->withJson($result, 200, JSON_PRETTY_PRINT);
     });
 $app->post('', function (Request $request, Response $response, array $args) {
-      $result = $this->task->createTask($args['task_id']);
-      return $response->withJson($result, 200, JSON_PRETTY_PRINT);
+      $result = $this->task->createTask($request->getParsedBody());
+      return $response->withJson($result, 201, JSON_PRETTY_PRINT);
     });
 $app->put('/{task_id}', function (Request $request, Response $response, array $args) {
       $result = $this->task->updateTask($args['task_id']);

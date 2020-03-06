@@ -28,20 +28,20 @@ class Task
     public function createTask($data)
     {
       $statement = $this->database->prepare(
-        'INSERT INTO tasks(title, url) VALUES(:title, :url)'
+        'INSERT INTO tasks(task, status) VALUES(:task, :status)'
       );
-      $statement->bindParam('title', $data['title']);
-      $statement->bindParam('url', $data['url']);
+      $statement->bindParam('task', $data['task']);
+      $statement->bindParam('status', $data['status']);
       $statement->execute();
       return $this->gettask($this->database->lastInsertId());
     }
     public function updatetask($data)
     {
       $statement = $this->database->prepare(
-        'UPDATE tasks SET title=:title, url=:url WHERE id=:id'
+        'UPDATE tasks SET task=:task, status=:status WHERE id=:id'
       );
-      $statement->bindParam('title', $data['title']);
-      $statement->bindParam('url', $data['url']);
+      $statement->bindParam('task', $data['task']);
+      $statement->bindParam('status', $data['status']);
       $statement->bindParam('id', $data['task_id']);
       $statement->execute();
       return $this->gettask($data['task_id']);
